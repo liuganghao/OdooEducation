@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<report id="report_notaire_quotation" string="Devis" model="sale.order"
+			report_type="qweb-pdf" file="notaire.report_notaryquotation" name="notaire.report_notaryquotation" />
+		<report id="report_fiche_comptable" string="Fiche Comptable"
+			model="sale.order" report_type="qweb-pdf" file="notaire.report_fichecomptable"
+			name="notaire.report_fichecomptable" />
+		<report id="report_receipt_order" string="Recu"
+			model="notaire.dossier.transaction" report_type="qweb-pdf"
+			file="notaire.report_receiptorder" name="notaire.report_receiptorder" />
+		<report id="report_decharge_order" string="Decharge"
+			model="notaire.dossier.transaction" report_type="qweb-pdf"
+			file="notaire.report_dechargeorder" name="notaire.report_dechargeorder" />
+		
+		<report id="report_contratnotaire_order" string="Contrat"
+			model="sale.order" report_type="qweb-pdf"
+			file="notaire.report_contratnotaire" name="notaire.report_contratnotaire" />
+		
+	</data>
+</openerp>

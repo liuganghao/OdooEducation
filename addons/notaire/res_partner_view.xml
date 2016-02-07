@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="view_res_partner_notary_form">
+			<field name="name">notaire.res.partner.form</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="firstname_arabic" placeholder="الإسم" />
+				</field>
+
+				<!-- I add this xpath to add the label "Contrat Information" -->
+				<xpath expr="/form/sheet/group[1]/group[1]" position="attributes">
+					<attribute name="string">Information Générales</attribute>
+				</xpath>
+
+				<field name="parent_id" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+
+				<field name="category_id" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+
+				<xpath expr="/form/sheet/group[1]/group[1]/label[2]" position="before">
+					<field name="father_name" placeholder="Nom de Père" attrs="{'invisible':[('is_company', '=', True)]}"/>
+					<field name="mother_name" placeholder="Nom de Mère" attrs="{'invisible':[('is_company', '=', True)]}"/>
+				</xpath>
+
+				<field name="website" position="before">
+					<field name="nationality" placeholder="Nationalité" />
+					<field name="marital_status" placeholder="Status Marital" attrs="{'invisible':[('is_company', '=', True)]}"/>
+					<field name="loi_marital" placeholder="Loi de mariage"
+						attrs="{'invisible':[('marital_status', '!=', 'marie'),('is_company', '=', True)]}" />
+					<field name="birth_place" placeholder="birth place"
+						attrs="{'invisible':[('is_company', '=', True)]}" />
+					<field name="cin" placeholder="CIN"
+						attrs="{'invisible':[('is_company', '=', True)]}" />
+					<field name="expiration_ci_date" placeholder="Date d'expiration de la CI" attrs="{'invisible':[('is_company', '=', True)]}"/>
+					<field name="birth_date" placeholder="birth date"
+						attrs="{'invisible':[('is_company', '=', True)]}" />
+					<field name="Commerce_Tribunal" placeholder="commerce du tribunal de commerce de ...."
+						attrs="{'invisible':[('is_company', '!=', True)]}" />
+					<field name="Registre_Analytique_Num" placeholder="Sous Le Numero de registre analytique ..."
+						attrs="{'invisible':[('is_company', '!=', True)]}" />
+					<field name="Identifiant_Fiscal" placeholder="Identifiant Fiscale N°"
+						attrs="{'invisible':[('is_company', '!=', True)]}" />
+				</field>
+
+				<xpath expr="/form/sheet/group[1]/group[1]" position="after">
+					<group string="معلومات عامة">
+						<field name="father_name_ar" placeholder="...........................................اسم الأب" attrs="{'invisible':[('is_company', '=', True)]}"/>
+						<field name="mother_name_ar" placeholder="............................................اسم الأم" attrs="{'invisible':[('is_company', '=', True)]}"/>
+						<field name="street_ar" placeholder="..............................................العنوان" />
+						<field name="street2_ar" string="تتمة-العنوان-"
+							placeholder="......................................................." />
+						<field name="city_ar" placeholder=".....................المدينة" style="width: 60%%" />
+						<field name="country_ar" placeholder="...............................................الدولة" />
+						<field name="nationality_ar" />
+						<field name="marital_status_ar" attrs="{'invisible':[('is_company', '=', True)]}"/>
+						<field name="birth_place_ar" placeholder="......................................مكان الإزدياد" attrs="{'invisible':[('is_company', '=', True)]}"/>
+					</group>
+				</xpath>
+
+				<xpath expr="/form/sheet/group[1]/group[3]" position="attributes">
+					<attribute name="string">Contact</attribute>
+				</xpath>
+
+				<xpath expr="/form/sheet/group[1]/group[3]" position="after">
+					<group string="اتصال">
+						<field name="job_ar" attrs="{'invisible':[('is_company', '=', True)]}"/>
+						<field name="tel" />
+						<field name="tel_por" />
+						<field name="fax2" />
+						<field name="email_ar" />
+						<field name="civility_ar" attrs="{'invisible':[('is_company', '=', True)]}"/>
+					</group>
+				</xpath>
+
+				<!-- Making the Ventes & achats fields invisible -->
+
+				<field name="ref" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+
+				<field name="lang" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+
+				<field name="date" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+
+				<field name="active" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+
+				<field name="opt_out" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+
+				<field name="notify_email" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+
+				<!-- The end of it -->
+
+				<page name="sales_purchases" position="attributes">
+					<attribute name="string">Paramétrage</attribute>
+				</page>
+
+				<field name="user_id" position="attributes">
+					<attribute name="string">Cabinet en Charge</attribute>
+				</field>
+
+				<xpath expr="/form/sheet/notebook/page[3]/group[1]/group[2]/field[1]"
+					position="attributes">
+					<attribute name="string">Acquéreur</attribute>
+				</xpath>
+
+				<xpath expr="/form/sheet/notebook/page[3]/group[1]/group[2]/field[1]"
+					position="after">
+					<field name="seller" string="Vendeur" />
+				</xpath>
+
+				<xpath expr="/form/sheet/notebook/page[3]/group[1]/group[2]/field[3]"
+					position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				
+				<xpath expr="/form/sheet/notebook/page[1]/field[1]/form[1]/sheet[1]/group[1]/field[1]"
+					position="after">
+					<field name="birth_place" placeholder="birth place"/>
+					<field name="cin" placeholder="CIN"/>
+					<field name="expiration_ci_date" placeholder="Date d'expiration de la CI"/>
+					<field name="birth_date" placeholder="birth date"/>
+				</xpath>
+
+			</field>
+		</record>
+
+
+	</data>
+</openerp>

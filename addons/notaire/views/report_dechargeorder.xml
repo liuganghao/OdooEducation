@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_dechargeorder_document">
+			<t t-call="notaire.external_layout_c">
+				<div class="page">
+					<div class="oe_structure" />
+					<div class="col-xs-6 col-xs-offset-4">
+						<div class="row mt4 mb4">
+							<h2 style="color:blue;">
+								Décharge
+							</h2>
+						</div>
+					</div>
+					<div class="row">
+						<table class="table table-condensed">
+							<tr>
+								<td>
+									<div class="col-xs-6 col-xs-offset-1">
+										<span t-if="o.transaction_id.date_order">
+											<strong>Vendeur:</strong>
+										</span>
+										<span t-field="o.transaction_id.seller_id.name" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-1">
+										<span t-if="o.transaction_id.date_order">
+											<strong>N° CIN OU RC:</strong>
+										</span>
+										<span t-field="o.transaction_id.seller_id.cin" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-1">
+										<span t-if="o.transaction_id.date_order">
+											<strong>Acquéreur:</strong>
+										</span>
+										<span t-field="o.transaction_id.partner_invoice_id.name" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-1">
+										<span t-if="o.transaction_id.date_order">
+											<strong>N° CIN OU RC:</strong>
+										</span>
+										<span t-field="o.transaction_id.partner_invoice_id.cin" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-1">
+										<span t-if="o.transaction_id.nature_acte">
+											<strong>Nature de l'acte:</strong>
+										</span>
+										<span t-field="o.transaction_id.nature_acte" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-1">
+										<span t-if="o.transaction_id.type_bien">
+											<strong>Type de Bien:</strong>
+										</span>
+										<span t-field="o.transaction_id.type_bien" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-1">
+										<span t-if="o.transaction_id.date_signature">
+											<strong>Date de Signature:</strong>
+										</span>
+										<span t-field="o.transaction_id.date_signature" />
+									</div>
+								</td>
+								<td style="padding-left: 8px;">
+									<div class="col-xs-6 col-xs-offset-4">
+										<span t-if="o.transaction_id.name">
+											<strong>Ref Affaire:</strong>
+										</span>
+										<span t-field="o.transaction_id.name" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-4">
+										<span t-if="o.transaction_id.client_order_ref">
+											<strong>Répertoire N°:</strong>
+										</span>
+										<span t-field="o.transaction_id.client_order_ref" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-4">
+										<span t-if="o.transaction_id.price_sell">
+											<strong>Prix de Vente:</strong>
+										</span>
+										<span t-field="o.transaction_id.price_sell" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-4">
+										<span t-if="o.transaction_id.loan_amount">
+											<strong>Montant Prêt:</strong>
+										</span>
+										<span t-field="o.transaction_id.loan_amount" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-4">
+										<span t-if="o.transaction_id.bank">
+											<strong>Banque:</strong>
+										</span>
+										<span t-field="o.transaction_id.bank.name" />
+									</div>
+									<div class="col-xs-6 col-xs-offset-4">
+										<span t-if="o.transaction_id.tf_mee">
+											<strong>T. Foncier N°:</strong>
+										</span>
+										<span t-field="o.transaction_id.tf_mee" />
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="oe_structure" />
+				</div>
+			</t>
+		</template>
+
+		<template id="external_layout_c">
+			<!-- Multicompany -->
+			<t t-if="o and 'company_id' in o">
+				<t t-set="company" t-value="o.company_id">
+				</t>
+			</t>
+			<t t-if="not o or not 'company_id' in o">
+				<t t-set="company" t-value="res_company">
+				</t>
+			</t>
+
+			<t t-call="notaire.external_layout_head" />
+			<t t-raw="0" />
+			<t t-call="report.external_layout_footer" />
+		</template>
+
+		<template id="external_layout_head">
+			<div class="header">
+				<div class="row">
+					<div class="col-xs-3">
+						<img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"
+							style="max-height:
+                            45px;" />
+					</div>
+					<div class="col-xs-9 text-right" style="margin-top:20px;"
+						t-field="company.rml_header1" />
+				</div>
+				<!-- <div class="row zero_min_height"> <div class="col-xs-12"> <div style="border-bottom: 
+					1px solid black;"> </div> </div> </div> -->
+				<!-- I deleted the company contact -->
+			</div>
+		</template>
+
+
+		<template id="report_dechargeorder">
+			<t t-call="report.html_container">
+				<t t-foreach="doc_ids" t-as="doc_id">
+					<t
+						t-raw="translate_doc(doc_id, doc_model, 'transaction_id.partner_id.lang', 'notaire.report_dechargeorder_document')" />
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

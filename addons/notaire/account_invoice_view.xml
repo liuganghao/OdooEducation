@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="view_account_invoice_line_tree">
+			<field name="name">account.invoice.line.tree</field>
+			<field name="model">account.invoice.line</field>
+			<field name="inherit_id" ref="account.view_invoice_line_tree" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+
+				<field name="price_unit" position="before">
+					<field name="invoice_line_percentage_id" string="Percentage" />
+				</field>
+
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_account_invoice_line_form">
+			<field name="name">account.invoice.line.form</field>
+			<field name="model">account.invoice.line</field>
+			<field name="inherit_id" ref="account.view_invoice_line_form" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+
+				<field name="price_unit" position="before">
+					<field name="invoice_line_percentage_id" string="Percentage" />
+				</field>
+
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_account_invoice_line_form">
+			<field name="name">account.invoice.facture</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+
+				<xpath expr="/form/sheet/notebook/page[1]/field/tree/field[9]"
+					position="before">
+					<field name="invoice_line_percentage_id" widget="many2many_tags" string="Percentage"
+						context="{'type':parent.type}"
+						domain="[('parent_id','=',False),('company_id', '=', parent.company_id)]" />
+				</xpath>
+
+			</field>
+		</record>
+
+
+	</data>
+</openerp>

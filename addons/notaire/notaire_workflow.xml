@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="wkf_notaire" model="workflow">
+			<field name="name">sale.order.notaire</field>
+			<field name="osv">sale.order</field>
+			<field name="on_create">True</field>
+		</record>
+
+		<!-- Activity -->
+		<record id="act_draft" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_notaire" />
+			<field name="flow_start">True</field>
+			<field name="name">draft</field>
+			<field name="kind">function</field>
+			<field name="action">dossier_draft()</field>
+		</record>
+
+
+		<record id="act_minute" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_notaire" />
+			<field name="name">minute</field>
+			<field name="kind">function</field>
+			<field name="action">dossier_minute()</field>
+		</record>
+
+		<record id="act_enregister" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_notaire" />
+			<field name="name">Enregistre</field>
+			<field name="kind">function</field>
+			<field name="action">dossier_enregister()</field>
+		</record>
+
+		<record id="act_non_enregister" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_notaire" />
+			<field name="name">Non_Enregistre</field>
+			<field name="kind">function</field>
+			<field name="action">dossier_enregister_none()</field>
+		</record>
+
+		<record id="act_conserver" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_notaire" />
+			<field name="name">Conserve</field>
+			<field name="kind">function</field>
+			<field name="action">dossier_conserve()</field>
+		</record>
+
+		<record id="act_non_conserver" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_notaire" />
+			<field name="name">Non_Conserve</field>
+			<field name="kind">function</field>
+			<field name="action">dossier_conserve_none()</field>
+		</record>
+		
+		<record id="act_done" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_notaire" />
+			<field name="name">termine</field>
+			<field name="kind">function</field>
+			<field name="action">dossier_done()</field>
+			<field name="flow_stop" eval='True' />
+		</record>
+
+
+
+
+
+		<!-- Transistion -->
+		
+		<record model="workflow.transition" id="t1">
+			<field name="act_from" ref="act_draft" />
+			<field name="act_to" ref="act_minute" />
+			<field name="signal">dossier_minute</field>
+		</record>
+
+		<record model="workflow.transition" id="t2">
+			<field name="act_from" ref="act_minute" />
+			<field name="act_to" ref="act_enregister" />
+			<field name="signal">dossier_enregister</field>
+		</record>
+
+		<record model="workflow.transition" id="t3">
+			<field name="act_from" ref="act_enregister" />
+			<field name="act_to" ref="act_conserver" />
+			<field name="signal">dossier_conserve</field>
+		</record>
+		
+		<record model="workflow.transition" id="t4">
+			<field name="act_from" ref="act_conserver" />
+			<field name="act_to" ref="act_done" />
+			<field name="signal">dossier_done</field>
+		</record>
+	</data>
+</openerp>

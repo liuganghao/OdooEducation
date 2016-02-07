@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_receiptorder_document">
+			<div class="page">
+				<p align="center">
+					<span>
+						<strong>Reçu N°</strong>
+					</span>
+					<span style="padding-left: 25px; padding-right: 25px;">305/15</span>
+					<span>
+						<strong>وصل ايداع عدد</strong>
+					</span>
+				</p>
+				<table>
+					<tr>
+						<td>
+							<p>
+								<span>
+									<strong>Etude de M. :</strong>
+								</span>
+								<span>Maître YAGOU</span>
+							</p>
+
+							<p>
+								<span>
+									<strong>Notaire à :</strong>
+								</span>
+								<span>Casablanca</span>
+							</p>
+
+							<p>
+								<span>
+									<strong>N° compte ouvert à la CDG :</strong>
+								</span>
+								<span>B12445679988</span>
+							</p>
+						</td>
+						<td class="text-right" style="padding-left: 130px;">
+							<p>
+								<span>Maître YAGOU</span>
+								<span>
+									<strong>مكتب اﻷستاذ</strong>
+								</span>
+							</p>
+
+							<p>
+								<span>Casablanca</span>
+								<span>
+									<strong>موثق ب</strong>
+								</span>
+							</p>
+
+							<p>
+								<span>B12445679988</span>
+								<span>
+									<strong>حساب صندوق اﻻيداع و التدبير</strong>
+								</span>
+							</p>
+						</td>
+					</tr>
+				</table>
+				<table class="table table-condensed">
+					<tr>
+						<td style="border: 1px solid blue;">
+
+							<p align="center">
+								<span class="text-left">
+									<strong>Répertoire N°:</strong>
+								</span>
+								<span style="padding-left: 1cm;" t-field="o.transaction_id.client_order_ref" />
+								<span style="padding-left: 1cm;" class="text-right">
+									<strong>:</strong>
+									<strong>سجل رقم</strong>
+								</span>
+							</p>
+
+							<p align="center">
+								<span class="text-left">
+									<strong>Dossier N°:</strong>
+								</span>
+								<span style="padding-left: 1cm;" t-field="o.transaction_id.name" />
+								<span style="padding-left: 1cm;" class="text-right">
+									<strong>:</strong>
+									<strong>ملف رقم</strong>
+								</span>
+							</p>
+
+						</td>
+						<td style="border: 1px solid blue;">
+							<table>
+								<tr>
+									<td>
+										<strong>1er Versement :</strong>
+									</td>
+									<td style="padding-left: 2cm;">
+										<img style="vertical-align:middle !important;" align="center"
+											class="img img-responsive" src="/notaire/static/src/img/red-cross.png" />
+									</td>
+									<td style="padding-left: 2cm;">
+										<strong class="text-right">:</strong>
+										<strong class="text-right">ايداع أصلي</strong>
+									</td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<td>
+										<strong>Complement de versement :</strong>
+									</td>
+									<td style="padding-left: 1cm;">
+										<img class="img img-responsive" src="/notaire/static/src/img/icon-check.png" />
+									</td>
+									<td style="padding-left: 1cm;">
+										<strong>:</strong>
+										<strong>ايداع تكميلي</strong>
+									</td>
+								</tr>
+							</table>
+							<p align="center">
+								<span t-if="o.transaction_id.name">
+									<strong>Dossier N°</strong>
+								</span>
+								<span style="padding-left: 2cm;" t-field="o.transaction_id.name" />
+								<span style="padding-left: 2cm;" t-if="o.transaction_id.name">
+									<strong>:</strong>
+									<strong>ملف رقم</strong>
+								</span>
+							</p>
+						</td>
+					</tr>
+				</table>
+				<table class="table table-condensed" style="margin-top: -20px;">
+					<tr style="border: 1px solid blue;">
+						<td class="text-left">
+							<span>
+								<strong>Objet:</strong>
+							</span>
+						</td>
+						<td align="center">
+							<span t-field="o.transaction_id.nature_acte" />
+						</td>
+						<td class="text-right">
+							<span t-if="o.transaction_id.nature_acte">
+								<strong>نوع العقد</strong>
+							</span>
+						</td>
+					</tr>
+
+				</table>
+				<table class="table table-condensed" style="margin-top: -15px;">
+					<tr>
+						<td class="text-left">
+							<span t-if="o.transaction_id.partner_invoice_id">
+								<strong>Reçu de M./Mme/Mlle :</strong>
+							</span>
+							<span t-field="o.transaction_id.partner_invoice_id.name" />
+						</td>
+						<td class="text-right">
+							<span class="text-right">
+								<strong>توصلت من السيد</strong>
+								<strong>(</strong>
+								<strong>ة</strong>
+								<strong>) :</strong>
+							</span>
+							<span t-field="o.transaction_id.partner_invoice_id.firstname_arabic" />
+						</td>
+					</tr>
+				</table>
+				<table class="table table-condensed" style="margin-top: -10px;">
+					<tr>
+						<td class="text-left">
+							<span t-if="o.transaction_id.partner_invoice_id">
+								<strong>Montant de:</strong>
+							</span>
+							<span style="padding-left: 2cm;" t-field="o.CFonds_Recettes" />
+							<span>
+								<strong> DH</strong>
+							</span>
+						</td>
+						<td class="text-right">
+							<span class="text-right">
+								<strong>: </strong>
+								<strong>بمبلغ</strong>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="text-right">
+							<span t-if="o.transaction_id.partner_invoice_id">
+								<strong>##</strong>
+							</span>
+							<span class="text-right" t-field="o.CFonds_Recettes_text" />
+							<span class="text-right">
+								<strong>##</strong>
+							</span>
+						</td>
+					</tr>
+
+				</table>
+				<div class="row">
+					<div class="col-xs-12 text-right" style="margin-top: -20px;">
+						<span>: </span>
+						<span>و أصرح بايداعه بصندوق الايداع و التدبير، في حساب الودائع و
+							الأداءات المشار اليه أعلاه، بواسطة
+						</span>
+					</div>
+				</div>
+				<table class="table table-condensed" style="margin-top: 5px;">
+					<tr>
+						<td style="border: 1px solid blue;">
+							<table align="center">
+								<tr>
+									<td>
+										<strong>Espèse :</strong>
+									</td>
+									<td style="padding-left: 30px;">
+										<img align="center" class="img img-responsive"
+											src="/notaire/static/src/img/red-cross.png" />
+									</td>
+									<td style="padding-left: 30px;">
+										<strong class="text-right">:</strong>
+										<strong class="text-right">ايداع نقدي</strong>
+									</td>
+								</tr>
+							</table>
+							<p align="center">
+								<span>
+									<strong>Versé le:</strong>
+								</span>
+								<span style="padding-left: 26px;">11/17/2015</span>
+								<span style="padding-left: 26px;">
+									<strong>:</strong>
+									<strong>بتاريخ</strong>
+								</span>
+							</p>
+							<p align="center">
+								<span>
+									<strong>N° Versement:</strong>
+								</span>
+								<span> 132245/150</span>
+								<span>
+									<strong>:</strong>
+									<strong>مرجع الايداع</strong>
+								</span>
+							</p>
+						</td>
+						<td style="border: 1px solid blue;" width="250px">
+							<table>
+								<tr>
+									<td>
+										<strong>Virement Bancaire :</strong>
+									</td>
+									<td>
+										<img align="center" class="img img-responsive"
+											src="/notaire/static/src/img/red-cross.png" />
+									</td>
+									<td>
+										<strong class="text-right">:</strong>
+										<strong class="text-right">تحويل بنكي</strong>
+									</td>
+								</tr>
+							</table>
+							<p align="center">
+								<span>
+									<strong>Reçu le:</strong>
+								</span>
+								<span style="padding-left: 26px;">11/17/2015</span>
+								<span style="padding-left: 26px;">
+									<strong>:</strong>
+									<strong>بتاريخ</strong>
+								</span>
+							</p>
+							<p align="center">
+								<span>
+									<strong>Banque:</strong>
+								</span>
+								<span style="padding-left: 30px;"> 132245/150</span>
+								<span style="padding-left: 30px;">
+									<strong>:</strong>
+									<strong>بنك</strong>
+								</span>
+							</p>
+						</td>
+						<td style="border: 1px solid blue;">
+							<table>
+								<tr>
+									<td>
+										<strong>Chèque :</strong>
+									</td>
+									<td style="padding-left: 30px;">
+										<img align="center" class="img img-responsive"
+											src="/notaire/static/src/img/icon-check.png" />
+									</td>
+									<td style="padding-left: 30px;">
+										<strong class="text-right">:</strong>
+										<strong class="text-right">شيك</strong>
+									</td>
+								</tr>
+							</table>
+							<p align="center">
+								<span>
+									<strong>N°:</strong>
+								</span>
+								<span style="padding-left: 30px;">11/17/2015</span>
+								<span style="padding-left: 30px;">
+									<strong>:</strong>
+									<strong>رقم</strong>
+								</span>
+							</p>
+							<p align="center">
+								<span>
+									<strong>Tiré sur:</strong>
+								</span>
+								<span> 132245/150</span>
+								<span>
+									<strong>:</strong>
+									<strong>مسحوب على</strong>
+								</span>
+							</p>
+						</td>
+					</tr>
+				</table>
+				<table class="table table-condensed" style="margin-top: -15px;">
+					<tr>
+						<td class="text-left">
+							<span t-if="o.transaction_id.partner_invoice_id">
+								<strong>Au profit de :</strong>
+							</span>
+						</td>
+						<td class="text-right">
+							<span class="text-right">
+								<strong>:</strong>
+								<strong>لفائدة</strong>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th class="text-right" style="border: 1px solid black;">الوطنية أو ما يقوم مقامها، أو رقم السجل التجاري\السبب الاجتماعي</th>
+							<th class="text-right" style="border: 1px solid black;" width="320px">اسم المستفيد</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border: 1px solid black;">
+							</td>
+							<td style="border: 1px solid black;">
+							</td>
+						</tr>
+						<tr>
+							<td style="border: 1px solid black;">
+							</td>
+							<td style="border: 1px solid black;">
+							</td>
+						</tr>
+						<tr>
+							<td style="border: 1px solid black;">
+							</td>
+							<td style="border: 1px solid black;">
+							</td>
+						</tr>
+						<tr>
+							<td style="border: 1px solid black;">
+							</td>
+							<td style="border: 1px solid black;">
+							</td>
+						</tr>
+						<tr>
+							<td style="border: 1px solid black;">
+							</td>
+							<td style="border: 1px solid black;">
+							</td>
+						</tr>
+						<tr>
+							<td style="border: 1px solid black;">
+							</td>
+							<td style="border: 1px solid black;">
+							</td>
+						</tr>
+						<tr>
+							<td style="border: 1px solid black;">
+							</td>
+							<td style="border: 1px solid black;">
+							</td>
+						</tr>				
+					</tbody>
+				</table>
+				<table  style="margin-top: 30px;">
+					<tr>
+						<td class="text-left">
+							<span t-if="o.transaction_id.partner_invoice_id">
+								<strong>Fait Le :</strong>
+							</span>
+						</td>
+						<td class="text-left" width="100px">
+						    
+						</td>
+						<td class="text-right">
+							<span class="text-right">
+								<strong>:</strong>
+								<strong>حرر بتاريخ</strong>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<table  style="margin-top: 30px;">
+					<tr>
+						<td width="250px">
+							<span style="padding-left: 100px;" class="text-right">
+								<strong>:</strong>
+								<strong>امضاء و خاتم الموثق</strong>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<div class="oe_structure" />
+			</div>
+		</template>
+
+
+		<template id="report_receiptorder">
+			<t t-call="report.html_container">
+				<t t-foreach="doc_ids" t-as="doc_id">
+					<t
+						t-raw="translate_doc(doc_id, doc_model, 'transaction_id.partner_id.lang', 'notaire.report_receiptorder_document')" />
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

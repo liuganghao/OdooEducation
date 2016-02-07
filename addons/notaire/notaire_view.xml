@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="product_template_form_view_extend" model="ir.ui.view">
+			<field name="name">product.template.form.inherit.extend</field>
+			<field name="model">product.template</field>
+			<field name="priority">5</field>
+			<field name="inherit_id" ref="account.product_template_form_view" />
+			<field name="arch" type="xml">
+				<field name="taxes_id" position="after">
+					<field name="percentages_id" colspan="2" widget="many2many_tags" />
+				</field>
+			</field>
+		</record>
+
+
+		<record id="view_act_nature_tree" model="ir.ui.view">
+			<field name="name">act.nature.tree</field>
+			<field name="model">act.nature</field>
+			<field name="priority">4</field>
+			<field name="arch" type="xml">
+				<tree string="Nature de l acte">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_act_nature_form" model="ir.ui.view">
+			<field name="name">act.nature.form</field>
+			<field name="model">act.nature</field>
+			<field name="priority">4</field>
+			<field name="arch" type="xml">
+				<form string="Nature de l acte">
+					<group>
+						<field name="name" />
+						<field name="contratmodel" />
+						<field name="note" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="notary_act_nature" model="ir.actions.act_window">
+			<field name="name">Nature de l'acte</field>
+			<field name="res_model">act.nature</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_act_nature" action="notary_act_nature"
+			parent="base.menu_base_config" sequence="20" />
+
+		<record id="view_type_bien_tree" model="ir.ui.view">
+			<field name="name">type.bien.tree</field>
+			<field name="model">type.bien</field>
+			<field name="priority">4</field>
+			<field name="arch" type="xml">
+				<tree string="Type du bien">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_type_bien_form" model="ir.ui.view">
+			<field name="name">type.bien.form</field>
+			<field name="model">type.bien</field>
+			<field name="priority">4</field>
+			<field name="arch" type="xml">
+				<form string="Type du bien">
+					<group>
+						<field name="name" />
+						<field name="note" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="notary_type_bien" model="ir.actions.act_window">
+			<field name="name">Type du bien</field>
+			<field name="res_model">type.bien</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_type_bien" action="notary_type_bien"
+			parent="base.menu_base_config" sequence="21" />
+
+		<record id="view_dossier_state_tree" model="ir.ui.view">
+			<field name="name">dossier.state.tree</field>
+			<field name="model">dossier.state</field>
+			<field name="priority">4</field>
+			<field name="arch" type="xml">
+				<tree string="Type du bien">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_dossier_state_form" model="ir.ui.view">
+			<field name="name">dossier.state.form</field>
+			<field name="model">dossier.state</field>
+			<field name="priority">4</field>
+			<field name="arch" type="xml">
+				<form string="Type du bien">
+					<group>
+						<field name="name" />
+						<field name="note" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="notary_dossier_state" model="ir.actions.act_window">
+			<field name="name">Etat du dossier</field>
+			<field name="res_model">dossier.state</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_type_bien" action="notary_type_bien"
+			parent="base.menu_base_config" sequence="22" />
+
+
+		<!-- Transactions -->
+
+		<record id="view_dossier_state_tree" model="ir.ui.view">
+			<field name="name">notaire.dossier.transaction.tree</field>
+			<field name="model">notaire.dossier.transaction</field>
+			<field name="priority">4</field>
+			<field name="arch" type="xml">
+				<tree string="Transactions">
+					<field name="transaction_id" />
+					<field name="date_transaction" />
+					<field name="name" />
+					<field name="Num_Cheque" />
+					<field name="Bank" />
+					<field name="CFrais_Recettes" />
+					<field name="CFrais_Depenses" />
+					<field name="CFonds_Recettes" />
+					<field name="CFonds_Depenses" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_dossier_state_form" model="ir.ui.view">
+			<field name="name">notaire.dossier.transaction.form</field>
+			<field name="model">notaire.dossier.transaction</field>
+			<field name="priority">4</field>
+			<field name="arch" type="xml">
+				<form string="Transactions">
+					<sheet>
+						<group>
+							<group>
+								<field name="transaction_id" />
+								<field name="date_transaction" />
+								<field name="name" />
+								<field name="Num_Cheque" />
+								<field name="Bank" />
+							</group>
+
+							<group>
+								<field name="CFrais_Recettes" />
+								<field name="CFrais_Depenses" />
+								<field name="CFonds_Recettes" />
+								<field name="CFonds_Depenses" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="notary_dossier_transaction" model="ir.actions.act_window">
+			<field name="name">Transactions du Dossier</field>
+			<field name="res_model">notaire.dossier.transaction</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- Fin Transactions -->
+
+		<record model="ir.ui.view" id="view_sale_order_notary_selection">
+			<field name="name">sale.order.notary.selection</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_sales_order_filter" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+				<filter string="Salesperson" position="before">
+					<filter string="Priorite" domain="[]"
+						context="{'group_by':'priorite_dossier'}" />
+					<filter string="Etat des dossiers" domain="[]"
+						context="{'group_by':'etat_dossier'}" />
+					<filter string="Date signature" domain="[]"
+						context="{'group_by':'date_signature'}" />
+					<filter string="En retard" domain="[]"
+						context="{'group_by':'signature_state'}" />
+					<filter string="Motif de retard" domain="[]"
+						context="{'group_by':'delay_reasons'}" />
+				</filter>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sale_order_notary_tree">
+			<field name="name">sale.order.notary.tree</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_quotation_tree" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+				<xpath expr="/tree" position="attributes">
+					<attribute name="colors">red:signature_state==2</attribute>
+				</xpath>
+				<field name="name" position="attributes">
+					<attribute name="string">N° de Dossier</attribute>
+				</field>
+				<field name="date_order" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+				<field name="user_id" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+				<field name="amount_total" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+				<field name="name" position="after">
+					<field name="repertory_name" string="N° de Répertoire" />
+					<field name="nature_acte" string="Acte" />
+					<field name="type_bien" string="Bien" />
+				</field>
+				<field name="partner_id" position="attributes">
+					<attribute name="string">Acquéreur</attribute>
+				</field>
+				<field name="partner_id" position="after">
+					<field name="seller_id" string="Vendeur" />
+					<field name="date_signature" />
+				</field>
+				<field name="state" position="after">
+					<field name="signature_state" invisible="True" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sale_order_notary_tree_archive">
+			<field name="name">sale.order.notary.tree.archive</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_tree" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+				<xpath expr="/tree" position="attributes">
+					<attribute name="colors">red:signature_state==2</attribute>
+				</xpath>
+				<field name="state" position="after">
+					<field name="signature_state" invisible="True" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sale_order_notary_form">
+			<field name="name">sale.order.nature.acte</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="priority" eval="20" />
+			<field name="arch" type="xml">
+
+				<xpath expr="/form/header" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+
+				<xpath expr="/form/sheet/h1/label[1]" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+
+				<xpath expr="/form/sheet/h1/label[2]" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+
+				<xpath expr="/form/sheet/h1/field" position="before">
+					<label string="Brouillon "
+						attrs="{'invisible': [('state','not in',('draft','sent'))]}" />
+					<label string="Référence Affaire "
+						attrs="{'invisible': [('state','in',('draft','sent'))]}" />
+
+				</xpath>
+
+				<xpath expr="/form/sheet" position="before">
+					<header>
+						<button name="dossier_minute" string="Confirmer" states="draft"
+							class="oe_highlight" type="object" />
+						<button name="dossier_enregister_none" string="Signer la minute"
+							states="minute" class="oe_highlight" type="object" />
+						<button name="dossier_enregister" string="Enregistrer"
+							states="non_enregistre" class="oe_highlight" type="object" />
+						<button name="dossier_conserve" string="Conserver" states="enregistre"
+							class="oe_highlight" type="object" />
+						<button name="dossier_done" string="Terminer" states="conserve"
+							class="oe_highlight" type="object" />
+						<button name="dossier_draft" string="Annuler"
+							states="minute,non_enregistre,enregistre,conserve,termine" class="oe_highlight"
+							type="object" />
+						<button name="dossier_draft" string="Retour au brouillon"
+							states="rejete" class="oe_highlight" type="object" />
+						<button name="dossier_rejete" string="Rejeter" states="draft"
+							class="oe_highlight" type="object" />
+						<field name="state" widget="statusbar"
+							statusbar_visible="draft,minute,non_enregistre,enregistre,conserve,rejete,termine"
+							statusbar_colors='{"draft":"red","enregistre":"blue"}' />
+					</header>
+
+				</xpath>
+
+				<field name="partner_id" position="attributes">
+					<attribute name="nolabel">1</attribute>
+				</field>
+
+				<field name="partner_id" position="before">
+					<label for="partner_id" string="Bénéficiaire"
+						attrs="{'invisible': [('nature_acte','not in', [1,10,11])]}" />
+					<label for="partner_id" string="Acquéreur"
+						attrs="{'invisible': [('nature_acte','not in', [2,8,12,13])]}" />
+					<label for="partner_id" string="Donataire"
+						attrs="{'invisible': [('nature_acte','not in', [3])]}" />
+					<label for="partner_id" string="Coopartageant"
+						attrs="{'invisible': [('nature_acte','not in', [4])]}" />
+					<label for="partner_id" string="Mandataire"
+						attrs="{'invisible': [('nature_acte','not in', [5])]}" />
+					<label for="partner_id" string="Emprunteur"
+						attrs="{'invisible': [('nature_acte','not in', [6,14])]}" />
+					<label for="partner_id" string="Partie 1"
+						attrs="{'invisible': [('nature_acte','not in', [7,9])]}" />
+				</field>
+
+
+				<xpath expr="/form/sheet/group[1]/group[1]" position="after">
+					<group>
+						<label for="seller_id" string="Promettant"
+							attrs="{'invisible': [('nature_acte','not in', [1,10,11])]}" />
+						<label for="seller_id" string="Vendeur"
+							attrs="{'invisible': [('nature_acte','not in', [2,8,12,13])]}" />
+						<label for="seller_id" string="Donateur"
+							attrs="{'invisible': [('nature_acte','not in', [3])]}" />
+						<label for="seller_id" string="Partageant"
+							attrs="{'invisible': [('nature_acte','not in', [4])]}" />
+						<label for="seller_id" string="Mandant"
+							attrs="{'invisible': [('nature_acte','not in', [5])]}" />
+						<label for="seller_id" string="Prêteur"
+							attrs="{'invisible': [('nature_acte','not in', [6,14])]}" />
+						<label for="seller_id" string="Partie 2"
+							attrs="{'invisible': [('nature_acte','not in', [7,9])]}" />
+						<field name="seller_id" nolabel="1" domain="[('seller','=',True)]"
+							context="{'search_default_seller':1, 'default_seller':1, 'default_customer':0, 'show_address': 1, 'show_mobile': 1}"
+							options='{"always_reload": True}' />
+					</group>
+				</xpath>
+
+				<xpath expr="/form/sheet/group[1]/group[3]" position="attributes">
+					<attribute name="string">Information sur le Bien</attribute>
+				</xpath>
+
+				<field name="date_order" position="after">
+					<field name="repertory_name" string="N° de Répertoire" />
+					<field name="nature_acte" string="Nature de L'acte"
+						on_change="on_change_natureact(nature_acte)" />
+					<field name="type_bien" />
+					<field name="adresse" />
+					<field name="ville" />
+					<field name="superficie" />
+					<field name="etage" />
+					<field name="delay_reasons" />
+					<field name="tf_req" />
+					<field name="tf_mee" />
+				</field>
+
+				<xpath expr="/form/sheet/group[1]/group[3]" position="after">
+					<group string="Information Paiement">
+						<field name="price_sell" />
+						<field name="loan_amount" />
+						<field name="bank" />
+						<field name="date_acquisition" />
+						<field name="date_signature"
+							attrs="{'invisible': [('state','in',('draft'))],'readonly':[('state','not in',('minute'))]}" />
+						<field name="signature_state" invisible="1" />
+					</group>
+				</xpath>
+				<xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[10]"
+					position="before">
+					<field name="percentage_id" widget="many2many_tags"
+						domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" />
+				</xpath>
+
+				<xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[6]"
+					position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+
+				<field name="amount_total" position="after">
+					<button name="dossier_minute" string="Confirmer" states="draft"
+						class="oe_highlight" type="object" />
+				</field>
+
+				<xpath expr="/form/sheet/notebook[1]/page[1]" position="after">
+					<page string="Fiche Comptable">
+						<field name="transaction_ids">
+							<form string="Fiche Comptable">
+								<group>
+									<group>
+										<field name="transaction_id" />
+										<field name="date_transaction" />
+										<field name="name" />
+										<field name="Num_Cheque" />
+										<field name="Bank" />
+									</group>
+
+									<group>
+										<field name="CFrais_Recettes" />
+										<field name="CFrais_Depenses" />
+										<field name="CFonds_Recettes" />
+										<field name="CFonds_Depenses" />
+									</group>
+								</group>
+							</form>
+							<tree string="Sales Order Lines" editable="bottom">
+								<field name="date_transaction" />
+								<field name="name" />
+								<field name="Num_Cheque" />
+								<field name="Bank" />
+								<field name="CFrais_Recettes" sum="Frais Recettes" />
+								<field name="CFrais_Depenses" sum="Frais Depenses" />
+								<field name="CFonds_Recettes" sum="Fonds Recettes" />
+								<field name="CFonds_Depenses" sum="Fonds Depenses" />
+								<button name="print_receipt" string="Print" icon="gtk-copy"
+									type="object" groups="base.group_user" />
+							</tree>
+							<group class="oe_subtotal_footer oe_right" colspan="2">
+								<field name="frais_ecart" string="Ecart des Frais" />
+								<field name="fond_ecart" string="Ecart des Fonds" />
+							</group>
+
+						</field>
+					</page>
+				</xpath>
+
+
+
+				<xpath expr="/form/sheet/notebook[1]/page[2]" position="after">
+					<page string="ENRG" groups="base.group_user">
+						<group>
+							<group name="charg_person" groups="base.group_user">
+								<field name="responsable_enrg"
+									context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'account.group_account_invoice', 'base.group_sale_salesman_all_leads']}" />
+								<field name="responsable_depot_enrg" />
+								<field name="date_depot_enrg" />
+								<field groups="base.group_no_one" name="date_enrg" />
+								<field groups="base.group_no_one" name="enrg_amount" />
+							</group>
+							<group>
+								<field name="or" />
+								<field name="re" />
+								<field name="dv" />
+								<field name="qce" />
+								<field name="enrg_ok" />
+							</group>
+						</group>
+					</page>
+					<page string="CF" groups="base.group_user">
+						<group>
+							<group name="charg_cf_person" groups="base.group_user">
+								<field name="responsable_cf"
+									context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'account.group_account_invoice', 'base.group_sale_salesman_all_leads']}" />
+								<field name="responsable_depot_cf" />
+								<field name="date_depot_cf" />
+								<field groups="base.group_no_one" name="date_cf" />
+							</group>
+							<group>
+								<field name="certificat" />
+								<field groups="base.group_no_one" name="cf_amount" />
+								<field name="cf_ok" />
+							</group>
+						</group>
+					</page>
+					<page string="Quitus" groups="base.group_user">
+						<group>
+							<group name="charg_quitus_person" groups="base.group_user">
+								<field name="responsable_quitus"
+									context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'account.group_account_invoice', 'base.group_sale_salesman_all_leads']}" />
+								<field name="responsable_depot_quitus" />
+								<field groups="base.group_no_one" name="tute" />
+							</group>
+							<group>
+								<field name="tnb" />
+								<field name="quitus_f" />
+								<field name="quitus_ok" />
+							</group>
+						</group>
+					</page>
+				</xpath>
+
+				<xpath expr="/form/sheet/notebook[1]/page[1]" position="before">
+					<page string="Contrat" groups="base.group_user">
+						<group>
+							<field name="contrat_model" string="Modèle de Contrat" />
+						</group>
+						<button name="print_contract" string="Imprimer contrat"
+							type="object" groups="base.group_user" />
+
+						<field name="body" />
+					</page>
+				</xpath>
+
+			</field>
+		</record>
+
+
+
+	</data>
+</openerp>
